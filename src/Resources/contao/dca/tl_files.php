@@ -3,7 +3,7 @@
  * Update the upload field in backend only if in relplace mode..
  */
 if (Input::get('do') == 'files' && Input::get('act') == 'move' && Input::get('mode') == '2' && Input::get('filename')) {
-	echo "
+	$GLOBALS['TL_MOOTOOLS'][] = "
 	<script>
 	document.addEventListener('DOMContentLoaded', function(event) {
 		document.querySelector('input[type=file]').removeAttribute('multiple');

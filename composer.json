@@ -1,0 +1,27 @@
+{
+    "name": "hh-com/contao-filereplace",
+    "type": "contao-bundle",
+    "description": "Replace Files in Contao backend",
+	"keywords": ["filemanager", "files"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.0",
+        "contao/core-bundle": "^4.4"
+    },
+    "extra": {
+        "contao-manager-plugin": "Hhcom\\ContaoFileReplace\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hhcom\\ContaoFileReplace\\": "src/"
+        },
+		"classmap": [
+            "src/Resources/contao"
+		],
+		"exclude-from-classmap": [
+			"src/Resources/contao/config",
+            "src/Resources/contao/templates/",
+			"src/Resources/contao/languages"
+		]
+    }
+}
