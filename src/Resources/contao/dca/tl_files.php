@@ -13,6 +13,7 @@ if (Input::get('do') == 'files' && Input::get('act') == 'move' && Input::get('mo
 }
 
 $GLOBALS['TL_DCA']['tl_files']['list']['operations']['replace'] = array(
+	'label'               => &$GLOBALS['TL_LANG']['tl_files']['replace'],
 	'href'                => 'act=move&amp;mode=2',
 	'icon'                => 'sync.svg',
 	'button_callback'     => array('tl_files_replace', 'replaceFile')
