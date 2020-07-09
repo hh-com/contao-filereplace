@@ -3,12 +3,15 @@
  * Update the upload field in backend only if in relplace mode..
  */
 if (Input::get('do') == 'files' && Input::get('act') == 'move' && Input::get('mode') == '2' && Input::get('filename')) {
+	
+	$existingFilename = sprintf($GLOBALS['TL_LANG']['tl_files']['replaceheadline'], \Input::get('filename'));
+
 	$GLOBALS['TL_MOOTOOLS'][] = "
 	<script>
 	document.addEventListener('DOMContentLoaded', function(event) {
 		document.querySelector('input[type=file]').removeAttribute('multiple');
 		document.querySelector('input[type=file]').setAttribute('accept','.".pathinfo(\Input::get('filename'), PATHINFO_EXTENSION)."');
-		document.querySelector('.tl_formbody_edit').insertAdjacentHTML('afterbegin', '<h2 class=\'tl_submit_container\'>Vorhandene Datei \"".\Input::get('filename')."\" wird überschreiben</h2>');
+		document.querySelector('.tl_formbody_edit').insertAdjacentHTML('afterbegin', '<h2 class=\'tl_submit_container\'>".$existingFilename."</h2>');
 	});</script>";	
 }
 
