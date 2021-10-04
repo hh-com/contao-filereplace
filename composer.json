@@ -5,7 +5,7 @@
 	"keywords": ["filemanager", "files"],
     "license": "MIT",
     "require": {
-        "php": "^7.0",
+        "php": "^7.0 || ^8.0",
         "contao/core-bundle": "^4.4"
     },
     "extra": {
