@@ -1,0 +1,6 @@
+services:
+    Hhcom\ContaoFileReplace\EventListener\FileReplaceListener:
+        arguments:
+            - "@contao.framework"
+        tags:
+            - { name: contao.hook, hook: postUpload }

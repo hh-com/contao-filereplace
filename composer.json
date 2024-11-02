@@ -5,8 +5,8 @@
 	"keywords": ["filemanager", "files"],
     "license": "MIT",
     "require": {
-        "php": "^7.0 || ^8.0",
-        "contao/core-bundle": "^4.4"
+        "php": "^8.0",
+        "contao/core-bundle": "^5.3"
     },
     "extra": {
         "contao-manager-plugin": "Hhcom\\ContaoFileReplace\\ContaoManager\\Plugin"
@@ -16,12 +16,12 @@
             "Hhcom\\ContaoFileReplace\\": "src/"
         },
 		"classmap": [
-            "src/Resources/contao"
+            "contao"
 		],
 		"exclude-from-classmap": [
-			"src/Resources/contao/config",
-            "src/Resources/contao/templates/",
-			"src/Resources/contao/languages"
+			"contao/config",
+            "contao/templates/",
+			"contao/languages"
 		]
     }
 }

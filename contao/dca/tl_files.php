@@ -2,15 +2,20 @@
 /**
  * Update the upload field in backend only if in relplace mode..
  */
+use Contao\Input;
+use Contao\Image;
+use Contao\Backend;
+use Contao\StringUtil;
+
 if (Input::get('do') == 'files' && Input::get('act') == 'move' && Input::get('mode') == '2' && Input::get('filename')) {
 	
-	$existingFilename = sprintf($GLOBALS['TL_LANG']['tl_files']['replaceheadline'], \Input::get('filename'));
+	$existingFilename = sprintf($GLOBALS['TL_LANG']['tl_files']['replaceheadline'], Input::get('filename'));
 
 	$GLOBALS['TL_MOOTOOLS'][] = "
 	<script>
 	document.addEventListener('DOMContentLoaded', function(event) {
 		document.querySelector('input[type=file]').removeAttribute('multiple');
-		document.querySelector('input[type=file]').setAttribute('accept','.".pathinfo(\Input::get('filename'), PATHINFO_EXTENSION)."');
+		document.querySelector('input[type=file]').setAttribute('accept','.".pathinfo(Input::get('filename'), PATHINFO_EXTENSION)."');
 		document.querySelector('.tl_formbody_edit').insertAdjacentHTML('afterbegin', '<h2 class=\'tl_submit_container\'>".$existingFilename."</h2>');
 	});</script>";	
 }
@@ -40,7 +45,7 @@ class tl_files_replace extends Backend
 	public function replaceFile($row, $href, $label, $title, $icon, $attributes)
 	{
 		
-		if (isset($row['type']) && $row['type'] == 'file' && !$GLOBALS['TL_DCA']['tl_files']['config']['closed'] && !$GLOBALS['TL_DCA']['tl_files']['config']['notCreatable'] && Input::get('act') != 'select')
+		if (isset($row['type']) && $row['type'] == 'file' && !isset($GLOBALS['TL_DCA']['tl_files']['config']['closed']) && !isset($GLOBALS['TL_DCA']['tl_files']['config']['notCreatable']) && Input::get('act') != 'select')
 		{
 			$foldername = str_replace( "/".$row['fileNameEncoded'],'',$row['id']);
 			return '<a href="' . $this->addToUrl($href . '&amp;pid=' . $foldername . '&amp;filename=' . $row['fileNameEncoded'] ) . '" title="' . StringUtil::specialchars($title) . '" ' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ';
